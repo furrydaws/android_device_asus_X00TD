@@ -129,7 +129,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
-    Snap
+    GoogleCameraMod
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -316,10 +316,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-impl \
     libnfc_nci_jni \
-    NfcNci \
-    com.nxp.nfc \
-    vendor.nxp.nxpnfc@1.0-service \
-    vendor.nxp.nxpnfc@1.0-impl
+    NfcNci 
 
 # OMX
 PRODUCT_PACKAGES += \
