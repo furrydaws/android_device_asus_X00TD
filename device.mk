@@ -129,7 +129,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
-    GoogleCameraMod
+    Snap
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -191,13 +191,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
-
-# Google Lens
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/camera/lens/google_build.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/google_build.xml \
-    $(LOCAL_PATH)/camera/lens/nexus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/nexus.xml \
-    $(LOCAL_PATH)/camera/lens/pixel_2017.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017.xml \
-    $(LOCAL_PATH)/camera/lens/pixel_2017_exclusive.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017_exclusive.xml
 
 # GPS / Location
 PRODUCT_PACKAGES += \
