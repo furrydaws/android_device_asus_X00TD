@@ -321,7 +321,7 @@ PRODUCT_PACKAGES += \
     libnqp61-jcop-kit \
     nfc_nci.sdm660 \
     NfcNci \
-    NQNfcNci \    
+    NQNfcNci \
     Tag \
     vendor.nxp.hardware.nfc@1.0-impl \
     vendor.nxp.hardware.nfc@1.0-service
