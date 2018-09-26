@@ -52,6 +52,10 @@
     <!-- Default value for led color when battery is fully charged -->
     <integer name="config_notificationsBatteryFullARGB">0xFF00FF00</integer>
 
+    <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
+         autodetected from the Configuration. -->
+    <bool name="config_showNavigationBar">true</bool>
+
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
     <bool name="config_automatic_brightness_available">true</bool>
@@ -77,30 +81,25 @@
 
          Must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLevels">
-        <item>1</item>
-        <item>15</item>
+        <item>6</item>
+        <item>9</item>
+        <item>14</item>
+        <item>20</item>
         <item>30</item>
-        <item>50</item>
-        <item>100</item>
-        <item>200</item>
-        <item>300</item>
-        <item>400</item>
-        <item>500</item>
-        <item>650</item>
-        <item>800</item>
-        <item>1000</item>
-        <item>1500</item>
-        <item>2000</item>
-        <item>3000</item>
-        <item>4000</item>
-        <item>5000</item>
+        <item>46</item>
+        <item>68</item>
+        <item>103</item>
+        <item>154</item>
+        <item>231</item>
+        <item>346</item>
+        <item>519</item>
+        <item>778</item>
+        <item>1168</item>
+        <item>1752</item>
+        <item>2627</item>
+        <item>3941</item>
         <item>7000</item>
-        <item>10000</item>
-        <item>12500</item>
-        <item>15000</item>
-        <item>17500</item>
-        <item>20000</item>
-        <item>50000</item>
+
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -109,31 +108,26 @@
          The brightness values must be between 0 and 255 and be non-decreasing.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-        <item>6</item>
-        <item>9</item>
-        <item>28</item>
-        <item>42</item>
-        <item>54</item>
-        <item>65</item>
-        <item>82</item>
-        <item>94</item>
-        <item>103</item>
-        <item>110</item>
-        <item>120</item>
-        <item>130</item>
-        <item>140</item>
-        <item>180</item>
-        <item>208</item>
-        <item>230</item>
-        <item>240</item>
-        <item>245</item>
-        <item>248</item>
-        <item>252</item>
-        <item>315</item>
-        <item>378</item>
-        <item>441</item>
-        <item>504</item>
-        <item>1259</item>
+        <item>19</item>
+        <item>23</item>
+        <item>26</item>
+        <item>30</item>
+        <item>34</item>
+        <item>39</item>
+        <item>45</item>
+        <item>51</item>
+        <item>59</item>
+        <item>67</item>
+        <item>77</item>
+        <item>88</item>
+        <item>101</item>
+        <item>116</item>
+        <item>133</item>
+        <item>152</item>
+        <item>174</item>
+        <item>199</item>
+        <item>255</item>
+
     </integer-array>
 
     <!-- Screen brightness used to dim the screen when the user activity
@@ -143,7 +137,7 @@
 
     <!-- Default screen brightness setting.
          Must be in the range specified by minimum and maximum. -->
-    <integer name="config_screenBrightnessSettingDefault">62</integer>
+    <integer name="config_screenBrightnessSettingDefault">128</integer>
 
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
@@ -159,7 +153,7 @@
 
     <!-- The maximum range of gamma adjustment possible using the screen
          auto-brightness adjustment setting. -->
-    <fraction name="config_autoBrightnessAdjustmentMaxGamma">300%</fraction>
+    <fraction name="config_autoBrightnessAdjustmentMaxGamma">200%</fraction>
 
     <!-- Period of time in which to consider light samples in milliseconds. -->
     <integer name="config_autoBrightnessAmbientLightHorizon">10000</integer>
@@ -178,8 +172,7 @@
     <string name="config_mms_user_agent" translatable="false">Android-Mms/2.0</string>
 
     <!-- MMS user agent prolfile url -->
-    <string name="config_mms_user_agent_profile_url" translatable="false"
-            >http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
+    <string name="config_mms_user_agent_profile_url" translatable="false">http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">false</bool>
@@ -196,7 +189,7 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"softap0"</item>
+        <item>"wlan0"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
