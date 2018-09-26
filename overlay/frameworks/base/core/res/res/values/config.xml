@@ -26,7 +26,7 @@
 
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
-    
+
     <!-- Default color temperature, in Kelvin, to tint the screen when Night display is
          activated. -->
     <integer name="config_nightDisplayColorTemperatureDefault">2850</integer>
@@ -51,10 +51,6 @@
 
     <!-- Default value for led color when battery is fully charged -->
     <integer name="config_notificationsBatteryFullARGB">0xFF00FF00</integer>
-
-    <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
-         autodetected from the Configuration. -->
-    <bool name="config_showNavigationBar">true</bool>
 
     <!-- Flag indicating whether the we should enable the automatic brightness in Settings.
          Software implementation will be used if config_hardware_auto_brightness_available is not set -->
@@ -425,7 +421,7 @@
     <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
          in hardware. -->
     <bool name="config_setColorTransformAccelerated">true</bool>
-   
+
     <!-- Hardware keys present on the device, stored as a bit field
     This integer should equal the sum of the corresponding value for each
          of the following keys present:
