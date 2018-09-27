@@ -1,4 +1,4 @@
-# 
+#
 # Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -137,7 +137,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
-    Snap
+    GoogleCameraMod
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
