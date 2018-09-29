@@ -42,10 +42,6 @@ def FullOTA_InstallEnd(info):
     info.script.AppendExtra('set_perm(0, 0, 0755, "/system/etc/init.d/90cpu");');
     info.script.Unmount("/system");
     info.script.Unmount("/vendor");
-
-
-    info.script.Unmount("/data");
-    info.script.Unmount("/persist");
     info.script.AppendExtra('ui_print(" Install DB7");');
     info.script.AppendExtra('run_program("/sbin/busybox", "unzip", "/tmp/install/DB7/DB7.zip", "META-INF/com/google/android/*", "-d", "/tmp/install/DB7");');
     info.script.AppendExtra('run_program("/sbin/busybox", "sh", "/tmp/install/DB7/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/install/DB7/DB7.zip");');
