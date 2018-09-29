@@ -523,6 +523,5 @@ PRODUCT_COPY_FILES += \
 # DB7 Kernel
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/DB7/DB7.zip
-
 $(call inherit-product, vendor/asus/X00TD/X00TD-vendor.mk)
 
