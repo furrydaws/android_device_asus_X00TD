@@ -39,7 +39,7 @@ def FullOTA_InstallEnd(info):
     info.script.Mount("/system");
     info.script.Mount("/vendor");
     info.script.AppendExtra('run_program("/sbin/sh", "/tmp/install/bin/device_check.sh");');
-    info.script.AppendExtra('set_perm(0, 0, 0755, "/system/etc/init.d/90cpu");');
+    info.script.AppendExtra('set_metadata_recursive("/system/etc/init.d", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);');
     info.script.Unmount("/system");
     info.script.Unmount("/vendor");
     info.script.AppendExtra('ui_print(" Install DB7");');
