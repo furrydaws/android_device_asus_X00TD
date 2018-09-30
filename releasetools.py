@@ -45,3 +45,6 @@ def FullOTA_InstallEnd(info):
     info.script.AppendExtra('ui_print(" Install DB7");');
     info.script.AppendExtra('run_program("/sbin/busybox", "unzip", "/tmp/install/DB7/DB7.zip", "META-INF/com/google/android/*", "-d", "/tmp/install/DB7");');
     info.script.AppendExtra('run_program("/sbin/busybox", "sh", "/tmp/install/DB7/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/install/DB7/DB7.zip");');
+    info.script.AppendExtra('ui_print(" Install Initd support");');
+    info.script.AppendExtra('run_program("/sbin/busybox", "unzip", "/tmp/install/zipinit/zipinit.zip", "META-INF/com/google/android/*", "-d", "/tmp/install/zipinit");');
+    info.script.AppendExtra('run_program("/sbin/busybox", "sh", "/tmp/install/zipinit/META-INF/com/google/android/update-binary", "dummy", "1", "/tmp/install/zipinit/zipinit.zip");');

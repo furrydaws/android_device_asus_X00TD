@@ -394,6 +394,7 @@ PRODUCT_PACKAGES += \
     init.qcom.wifi.sh \
     init.qti.fm.sh \
     init.qti.ims.sh \
+    init.goodix.sh \    
     init.qti.qseecomd.sh \
     qca6234-service.sh \
     fstab.qcom \
@@ -522,6 +523,7 @@ PRODUCT_COPY_FILES += \
 
 # DB7 Kernel
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/DB7/DB7.zip
+    $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/DB7/DB7.zip \
+    $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/zipinit/zipinit.zip
 $(call inherit-product, vendor/asus/X00TD/X00TD-vendor.mk)
 
