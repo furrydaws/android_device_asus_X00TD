@@ -400,6 +400,7 @@ PRODUCT_PACKAGES += \
     init.qcom.wifi.sh \
     init.qti.fm.sh \
     init.qti.ims.sh \
+    init.goodix.sh \
     init.qti.qseecomd.sh \
     qca6234-service.sh \
     fstab.qcom \
@@ -522,4 +523,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf \
     $(LOCAL_PATH)/configs/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
+# CPU Tune
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/init.d/90cpu:system/etc/init.d/90cpu
+
+# DB7 Kernel
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/DB7/DB7.zip \
+    $(LOCAL_PATH)/rootdir/DB7/DB7.zip:install/zipinit/zipinit.zip
 $(call inherit-product, vendor/asus/X00TD/X00TD-vendor.mk)
+
