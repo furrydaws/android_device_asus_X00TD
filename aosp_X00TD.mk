@@ -40,9 +40,9 @@ TARGET_VENDOR := ASUS
 TARGET_VENDOR_PRODUCT_NAME := X00TD
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sdm660_64-user 8.1.0 OPM1 1534 release-keys" \
+    PRIVATE_BUILD_DESC="sdm660_64-user 8.1.0 OPM1 1874 release-keys" \
     TARGET_DEVICE="X00TD" \
     DEVICE_MAINTAINERS="Klajnor"
 
 # Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
-BUILD_FINGERPRINT := Android/sdm660_64/sdm660_64:8.1.0/OPM1/15.2016.1808.323-20180813:user/release-keys
+BUILD_FINGERPRINT := Android/sdm660_64/sdm660_64:8.1.0/OPM1/15.2016.1808.327-20180911:user/release-keys

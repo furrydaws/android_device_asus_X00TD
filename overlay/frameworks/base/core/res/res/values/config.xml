@@ -95,7 +95,6 @@
         <item>2627</item>
         <item>3941</item>
         <item>7000</item>
-
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -123,7 +122,6 @@
         <item>174</item>
         <item>199</item>
         <item>255</item>
-
     </integer-array>
 
     <!-- Screen brightness used to dim the screen when the user activity
@@ -306,9 +304,6 @@
     <!-- When true use the linux /dev/input/event subsystem to detect the switch changes
          on the headphone/microphone jack. When false use the older uevent framework. -->
     <bool name="config_useDevInputEventForAudioJack">true</bool>
-
-    <!-- Whether device supports double tap to wake -->
-    <bool name="config_supportDoubleTapWake">true</bool>
 
     <!-- Configure mobile tcp buffer sizes in the form:
          rat-name:rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max
