@@ -39,6 +39,7 @@
 
 using android::base::GetProperty;
 using android::base::ReadFileToString;
+using android::base::Split;
 using android::base::Trim;
 using android::init::property_set;
 
@@ -75,7 +76,29 @@ static void init_alarm_boot_properties()
     }
 }
 
+void import_kernel_cmdline(const std::function<void(const std::string&, const std::string&)>& fn) {
+    std::string cmdline;
+    ReadFileToString("/proc/cmdline", &cmdline);
+
+    for (const auto& entry : Split(Trim(cmdline), " ")) {
+        std::vector<std::string> pieces = Split(entry, "=");
+        if (pieces.size() == 2) {
+            fn(pieces[0], pieces[1]);
+        }
+    }
+}
+
+static void init_setup_model_properties(const std::string& key, const std::string& value)
+{
+    if (key.empty()) return;
+
+    if (key == "androidboot.hwc") {
+        property_set("ro.product.model", "ASUS_X00TD");
+	}	
+}
+
 void vendor_load_properties()
 {
     init_alarm_boot_properties();
+    import_kernel_cmdline(init_setup_model_properties);
 }

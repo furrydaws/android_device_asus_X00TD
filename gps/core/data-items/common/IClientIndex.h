@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,49 +27,57 @@
  *
  */
 
-#ifndef MEASUREMENT_API_CLINET_H
-#define MEASUREMENT_API_CLINET_H
+#ifndef __ICLIENTINDEX_H__
+#define __ICLIENTINDEX_H__
 
+#include <list>
 
-#include <android/hardware/gnss/1.0/IGnssMeasurement.h>
-#include <android/hardware/gnss/1.0/IGnssMeasurementCallback.h>
-#include <LocationAPIClientBase.h>
-#include <hidl/Status.h>
-
-namespace android {
-namespace hardware {
-namespace gnss {
-namespace V1_0 {
-namespace implementation {
-
-using ::android::hardware::gnss::V1_0::IGnssMeasurement;
-using ::android::sp;
-
-class MeasurementAPIClient : public LocationAPIClientBase
+namespace loc_core
 {
+
+template  <typename CT, typename DIT>
+
+class IClientIndex {
 public:
-    MeasurementAPIClient();
-    virtual ~MeasurementAPIClient();
-    MeasurementAPIClient(const MeasurementAPIClient&) = delete;
-    MeasurementAPIClient& operator=(const MeasurementAPIClient&) = delete;
 
-    // for GpsMeasurementInterface
-    Return<IGnssMeasurement::GnssMeasurementStatus> measurementSetCallback(
-            const sp<IGnssMeasurementCallback>& callback);
-    void measurementClose();
+    // Checks if client is subscribed
+    virtual bool isSubscribedClient (CT client) = 0;
 
-    // callbacks we are interested in
-    void onGnssMeasurementsCb(GnssMeasurementsNotification gnssMeasurementsNotification) final;
+    // gets subscription list
+    virtual void getSubscribedList (CT client, std :: list <DIT> & out) = 0;
 
-private:
-    sp<IGnssMeasurementCallback> mGnssMeasurementCbIface;
+    // removes an entry
+    virtual int remove (CT client) = 0;
 
-    bool mTracking;
+    // removes std :: list of data items and returns a list of clients
+    // removed if any.
+    virtual void remove
+    (
+        const std :: list <DIT> & r,
+        std :: list <CT> & out
+    ) = 0;
+
+    // removes list of data items indexed by client and returns list
+    // of data items removed if any.
+    virtual void remove
+    (
+        CT client,
+        const std :: list <DIT> & r,
+        std :: list <DIT> & out
+    ) = 0;
+
+    // adds/modifies entry in  map and returns new data items added.
+    virtual void add
+    (
+        CT client,
+        const std :: list <DIT> & l,
+        std :: list <DIT> & out
+    ) = 0;
+
+    // dtor
+    virtual ~IClientIndex () {}
 };
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace gnss
-}  // namespace hardware
-}  // namespace android
-#endif // MEASUREMENT_API_CLINET_H
+} // namespace loc_core
+
+#endif // #ifndef __ICLIENTINDEX_H__

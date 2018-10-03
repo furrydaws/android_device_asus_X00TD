@@ -14,35 +14,42 @@
 # limitations under the License.
 #
 
-# Inherit from those products. Most specific first.
+# Release name
+PRODUCT_RELEASE_NAME := X00TD
+
+$(call inherit-product, build/target/product/embedded.mk)
+
+# PixelExperience stuff.
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_GAPPS_ARCH := arm64
+GAPPS_VARIANT := nano
+CUSTOM_BUILD_TYPE := UNOFFICIAL
+
+# Inherit from our custom product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-
-# Inherit some common PEX stuff.
 $(call inherit-product, vendor/aosp/config/common_full_phone.mk)
-GAPPS_VARIANT := nano
-TARGET_GAPPS_ARCH := arm64
-CUSTOM_BUILD_TYPE := UNOFFICIAL
+
 
 # Inherit from X00TD device
 $(call inherit-product, $(LOCAL_PATH)/device.mk)
 
-# Product Config
-PRODUCT_BRAND := ASUS
+## Device identifier. This must come after all inclusions
+PRODUCT_NAME := aosp_X00TD
 PRODUCT_DEVICE := X00TD
 PRODUCT_MANUFACTURER := ASUS
-PRODUCT_NAME := aosp_X00TD
-PRODUCT_MODEL := ZenFone Max Pro M1
-BOARD_VENDOR := ASUS
-PRODUCT_GMS_CLIENTID_BASE := android-asus
+PRODUCT_BRAND := ASUS
+PRODUCT_FULL_TREBLE_OVERRIDE := true
 
-TARGET_VENDOR := ASUS
-TARGET_VENDOR_PRODUCT_NAME := X00TD
+TARGET_VENDOR_PRODUCT_NAME := whyred
+TARGET_VENDOR_DEVICE_NAME := whyred
+PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=whyred PRODUCT_NAME=whyred
+PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sdm660_64-user 8.1.0 OPM1 1874 release-keys" \
-    TARGET_DEVICE="X00TD" \
-    DEVICE_MAINTAINERS="Klajnor"
+    PRIVATE_BUILD_DESC="sdm660_64-user 8.1.0 OPM1 1874 release-keys"
 
-# Set BUILD_FINGERPRINT variable to be picked up by both system and vendor build.prop
 BUILD_FINGERPRINT := Android/sdm660_64/sdm660_64:8.1.0/OPM1/15.2016.1808.327-20180911:user/release-keys
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.product.model

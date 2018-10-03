@@ -1,6 +1,7 @@
 
 # Copyright (C) 2016 The CyanogenMod Project
 # Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +14,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 LOCAL_PATH := $(call my-dir)
 
@@ -22,7 +22,9 @@ include $(CLEAR_VARS)
 LOCAL_MODULE_TAGS := optional
 LOCAL_C_INCLUDES := \
     system/core/base/include \
-    system/core/init
+    system/core/init \
+    external/selinux/libselinux/include
+LOCAL_CFLAGS := -Wall
 LOCAL_CPPFLAGS := -Wall
 LOCAL_SRC_FILES := init_X00TD.cpp
 LOCAL_MODULE := libinit_X00TD

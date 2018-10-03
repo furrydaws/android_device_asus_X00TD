@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,49 +27,22 @@
  *
  */
 
-#ifndef MEASUREMENT_API_CLINET_H
-#define MEASUREMENT_API_CLINET_H
+#ifndef __INDEXFACTORY_H__
+#define __INDEXFACTORY_H__
 
+#include <IClientIndex.h>
+#include <IDataItemIndex.h>
 
-#include <android/hardware/gnss/1.0/IGnssMeasurement.h>
-#include <android/hardware/gnss/1.0/IGnssMeasurementCallback.h>
-#include <LocationAPIClientBase.h>
-#include <hidl/Status.h>
-
-namespace android {
-namespace hardware {
-namespace gnss {
-namespace V1_0 {
-namespace implementation {
-
-using ::android::hardware::gnss::V1_0::IGnssMeasurement;
-using ::android::sp;
-
-class MeasurementAPIClient : public LocationAPIClientBase
+namespace loc_core
 {
+template <typename CT, typename DIT>
+class IndexFactory {
+
 public:
-    MeasurementAPIClient();
-    virtual ~MeasurementAPIClient();
-    MeasurementAPIClient(const MeasurementAPIClient&) = delete;
-    MeasurementAPIClient& operator=(const MeasurementAPIClient&) = delete;
-
-    // for GpsMeasurementInterface
-    Return<IGnssMeasurement::GnssMeasurementStatus> measurementSetCallback(
-            const sp<IGnssMeasurementCallback>& callback);
-    void measurementClose();
-
-    // callbacks we are interested in
-    void onGnssMeasurementsCb(GnssMeasurementsNotification gnssMeasurementsNotification) final;
-
-private:
-    sp<IGnssMeasurementCallback> mGnssMeasurementCbIface;
-
-    bool mTracking;
+    static IClientIndex <CT, DIT> * createClientIndex ();
+    static IDataItemIndex <CT, DIT> * createDataItemIndex ();
 };
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace gnss
-}  // namespace hardware
-}  // namespace android
-#endif // MEASUREMENT_API_CLINET_H
+} // namespace loc_core
+
+#endif // #ifndef __INDEXFACTORY_H__

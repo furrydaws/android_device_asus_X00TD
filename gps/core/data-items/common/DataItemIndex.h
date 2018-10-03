@@ -1,4 +1,4 @@
-/* Copyright (c) 2017, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,49 +27,44 @@
  *
  */
 
-#ifndef MEASUREMENT_API_CLINET_H
-#define MEASUREMENT_API_CLINET_H
+#ifndef __DATAITEMINDEX_H__
+#define __DATAITEMINDEX_H__
 
+#include <list>
+#include <map>
+#include <IDataItemIndex.h>
 
-#include <android/hardware/gnss/1.0/IGnssMeasurement.h>
-#include <android/hardware/gnss/1.0/IGnssMeasurementCallback.h>
-#include <LocationAPIClientBase.h>
-#include <hidl/Status.h>
+using loc_core::IDataItemIndex;
 
-namespace android {
-namespace hardware {
-namespace gnss {
-namespace V1_0 {
-namespace implementation {
-
-using ::android::hardware::gnss::V1_0::IGnssMeasurement;
-using ::android::sp;
-
-class MeasurementAPIClient : public LocationAPIClientBase
+namespace loc_core
 {
+
+template <typename CT, typename DIT>
+
+class DataItemIndex : public IDataItemIndex  <CT, DIT> {
+
 public:
-    MeasurementAPIClient();
-    virtual ~MeasurementAPIClient();
-    MeasurementAPIClient(const MeasurementAPIClient&) = delete;
-    MeasurementAPIClient& operator=(const MeasurementAPIClient&) = delete;
 
-    // for GpsMeasurementInterface
-    Return<IGnssMeasurement::GnssMeasurementStatus> measurementSetCallback(
-            const sp<IGnssMeasurementCallback>& callback);
-    void measurementClose();
+    DataItemIndex ();
 
-    // callbacks we are interested in
-    void onGnssMeasurementsCb(GnssMeasurementsNotification gnssMeasurementsNotification) final;
+    ~DataItemIndex ();
+
+    void getListOfSubscribedClients (DIT id, std :: list <CT> & out);
+
+    int remove (DIT id);
+
+    void remove (const std :: list <CT> & r, std :: list <DIT> & out);
+
+    void remove (DIT id, const std :: list <CT> & r, std :: list <CT> & out);
+
+    void add (DIT id, const std :: list <CT> & l, std :: list <CT> & out);
+
+    void add (CT client, const std :: list <DIT> & l, std :: list <DIT> & out);
 
 private:
-    sp<IGnssMeasurementCallback> mGnssMeasurementCbIface;
-
-    bool mTracking;
+    std :: map < DIT, std :: list <CT> > mClientsPerDataItemMap;
 };
 
-}  // namespace implementation
-}  // namespace V1_0
-}  // namespace gnss
-}  // namespace hardware
-}  // namespace android
-#endif // MEASUREMENT_API_CLINET_H
+} // namespace loc_core
+
+#endif // #ifndef __DATAITEMINDEX_H__
