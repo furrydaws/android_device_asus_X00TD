@@ -277,11 +277,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
-# Manifest replacement for non NFC variant
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/manifest_no_nfc.xml:$(TARGET_COPY_OUT_VENDOR)/manifest_no_nfc.xml \
-    $(LOCAL_PATH)/rootdir/bin/device_check.sh:install/bin/device_check.sh
-
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -394,7 +389,6 @@ PRODUCT_PACKAGES += \
     init.qcom.wifi.sh \
     init.qti.fm.sh \
     init.qti.ims.sh \
-    init.goodix.sh \
     init.qti.qseecomd.sh \
     qca6234-service.sh \
     fstab.qcom \

@@ -40,6 +40,3 @@ if ! grep "nfc" /persist/manifest.xml
     mv -f /vendor/manifest_no_nfc.xml /vendor/manifest.xml
 fi
 
-if [ ! -f /data/system/users/0/settings_fingerprint.xml ]; then
-    rm -rf /persist/data/finger_*
-fi

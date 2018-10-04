@@ -95,6 +95,7 @@
         <item>2627</item>
         <item>3941</item>
         <item>7000</item>
+
     </integer-array>
 
     <!-- Array of output values for LCD backlight corresponding to the LUX values
@@ -122,6 +123,7 @@
         <item>174</item>
         <item>199</item>
         <item>255</item>
+
     </integer-array>
 
     <!-- Screen brightness used to dim the screen when the user activity
@@ -183,9 +185,7 @@
          Wifi interfaces.  If the device doesn't want to support tethering over Wifi this
          should be empty.  An example would be "softap.*" -->
     <string-array translatable="false" name="config_tether_wifi_regexs">
-        <item>"wlan.*"</item>
-        <item>"softap.*"</item>
-	<item>"wigig.*"</item>
+        <item>"wlan0"</item>
     </string-array>
 
     <!-- List of regexpressions describing the interface (if any) that represent tetherable
@@ -247,17 +247,17 @@
          does not require auto-restore. -->
     <!-- the 6th element indicates boot-time dependency-met value. -->
     <string-array translatable="false" name="networkAttributes">
-        <item>wifi,1,1,1,-1,true</item>
-        <item>mobile,0,0,0,-1,true</item>
-        <item>mobile_mms,2,0,4,60000,true</item>
-        <item>mobile_supl,3,0,2,60000,true</item>
-        <item>mobile_dun,4,0,2,60000,true</item>
-        <item>mobile_hipri,5,0,3,60000,true</item>
-        <item>mobile_fota,10,0,2,60000,true</item>
-        <item>mobile_ims,11,0,2,60000,true</item>
-        <item>mobile_cbs,12,0,2,60000,true</item>
-        <item>bluetooth,7,7,2,-1,true</item>
-        <item>mobile_emergency,15,0,5,-1,true</item>
+        <item>"wifi,1,1,1,-1,true"</item>
+        <item>"mobile,0,0,0,-1,true"</item>
+        <item>"mobile_mms,2,0,4,60000,true"</item>
+        <item>"mobile_supl,3,0,2,60000,true"</item>
+        <item>"mobile_dun,4,0,2,60000,true"</item>
+        <item>"mobile_hipri,5,0,3,60000,true"</item>
+        <item>"mobile_fota,10,0,2,60000,true"</item>
+        <item>"mobile_ims,11,0,2,60000,true"</item>
+        <item>"mobile_cbs,12,0,2,60000,true"</item>
+        <item>"bluetooth,7,7,2,-1,true"</item>
+        <item>"mobile_emergency,15,0,5,-1,true"</item>
     </string-array>
 
     <!-- This string array should be overridden by the device to present a list of radio
@@ -366,39 +366,6 @@
          rotations as the default behavior. -->
     <bool name="config_allowAllRotations">true</bool>
 
-    
-    <!-- Sets the minimum and maximum tilt tolerance for each possible rotation.
-         This array consists of 4 pairs of values which specify the minimum and maximum
-         tilt angle at which the device will transition into each rotation.
-         The tilt angle represents the direction in which the plane of the screen is facing;
-         it is also known as the angle of elevation.
-           -90 degree tilt means that the screen is facing straight down
-                           (the device is being held overhead upside-down)
-             0 degree tilt means that the screen is facing outwards
-                           (the device is being held vertically)
-            90 degree tilt means that the screen is facing straight up
-                           (the device is resting on a flat table)
-        The default tolerances are set conservatively such that the device is more
-        likely to remain in its natural orientation than rotate into a counterclockwise,
-        clockwise, or reversed posture (with an especially strong bias against the latter)
-        to prevent accidental rotation while carrying the device in hand.
-        These thresholds may need to be tuned when the device is intended to be
-        mounted into a dock with a particularly shallow profile wherein rotation
-        would ordinarily have been suppressed.
-        It is helpful to consider the desired behavior both when the device is being
-        held at a positive tilt (typical case) vs. a negative tilt (reading overhead in
-        bed) since they are quite different.  In the overhead case, we typically want
-        the device to more strongly prefer to retain its current configuration (in absence
-        of a clear indication that a rotation is desired) since the user's head and neck may
-        be held at an unusual angle.
-    -->
-    <integer-array name="config_autoRotationTiltTolerance">
-        <!-- rotation:   0 (natural)    --> <item>-25</item> <item>70</item>
-        <!-- rotation:  90 (rotate CCW) --> <item>-25</item> <item>65</item>
-        <!-- rotation: 180 (reverse)    --> <item>-25</item> <item>60</item>
-        <!-- rotation: 270 (rotate CW)  --> <item>-25</item> <item>65</item>
-    </integer-array>
-
     <!-- Integer parameters of the wifi to cellular handover feature
          wifi should not stick to bad networks -->
     <integer name="config_wifi_framework_wifi_score_bad_rssi_threshold_5GHz">-82</integer>
@@ -472,23 +439,5 @@
     <!-- Whether a software navigation bar should be shown. NOTE: in the future this may be
          autodetected from the Configuration. -->
     <bool name="config_showNavigationBar">true</bool>
-    
-    <!-- All the capabilities of the LEDs on this device, stored as a bit field.
-     This integer should equal the sum of the corresponding value for each
-     of the following capabilities present:
-     LIGHTS_RGB_NOTIFICATION_LED = 1
-     LIGHTS_RGB_BATTERY_LED = 2
-     LIGHTS_MULTIPLE_NOTIFICATION_LED = 4 (deprecated)
-     LIGHTS_PULSATING_LED = 8
-     LIGHTS_SEGMENTED_BATTERY_LED = 16
-     LIGHTS_ADJUSTABLE_NOTIFICATION_LED_BRIGHTNESS = 32
-     LIGHTS_BATTERY_LED = 64
-     For example, a device with notification and battery lights
-     that support pulsating and RGB control would set this config
-     to 75. -->
-    <integer name="config_deviceLightCapabilities">104</integer>
-
-    <!-- Whether device has screen with higher aspect ratio -->
-    <bool name="config_haveHigherAspectRatioScreen">true</bool>    
 
 </resources>
