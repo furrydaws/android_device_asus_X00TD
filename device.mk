@@ -199,6 +199,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
 
+# Google Lens
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/camera/lens/google_build.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/google_build.xml \
+    $(LOCAL_PATH)/camera/lens/nexus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/nexus.xml \
+    $(LOCAL_PATH)/camera/lens/pixel_2017.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017.xml \
+    $(LOCAL_PATH)/camera/lens/pixel_2017_exclusive.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017_exclusive.xml
+
 # GPS / Location
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
@@ -281,6 +288,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest_no_nfc.xml:$(TARGET_COPY_OUT_VENDOR)/manifest_no_nfc.xml \
     $(LOCAL_PATH)/rootdir/bin/device_check.sh:install/bin/device_check.sh
+    
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -326,6 +334,7 @@ PRODUCT_PACKAGES += \
     com.nxp.nfc.nq.xml \
     libnqnfc-nci \
     libnqp61-jcop-kit \
+    nfc_nci.nqx.default \    
     nfc_nci.sdm660 \
     NfcNci \
     NQNfcNci \
