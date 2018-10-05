@@ -35,9 +35,6 @@ if ! grep "nfc" /persist/manifest.xml
     rm -rf /vendor/lib/hw/*nfc*
     rm -rf /vendor/lib64/*nfc*
     rm -rf /vendor/lib64/hw/*nfc*
-    # Use Non NFC manifest
-    rm -rf /vendor/manifest.xml
-    mv -f /vendor/manifest_no_nfc.xml /vendor/manifest.xml
 fi
 
 if [ ! -f /data/system/users/0/settings_fingerprint.xml ]; then

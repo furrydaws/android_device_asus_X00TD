@@ -36,9 +36,13 @@ def AddTrustZoneAssertion(info, input_zip):
   return
 
 def FullOTA_InstallEnd(info):
+    info.script.AppendExtra('ifelse(is_mounted("/system"), unmount("/system"));');
     info.script.Mount("/system");
+    info.script.AppendExtra('ifelse(is_mounted("/vendor"), unmount("/vendor"));');
     info.script.Mount("/vendor");
+    info.script.AppendExtra('ifelse(is_mounted("/data"), unmount("/data"));');
     info.script.Mount("/data");
+    info.script.AppendExtra('ifelse(is_mounted("/persist"), unmount("/persist"));');
     info.script.Mount("/persist");
     info.script.AppendExtra('run_program("/sbin/sh", "/tmp/install/bin/device_check.sh");');
     info.script.Unmount("/system");
