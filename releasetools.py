@@ -34,18 +34,3 @@ def AddTrustZoneAssertion(info, input_zip):
       cmd = 'assert(X00TD.verify_trustzone(' + ','.join(['"%s"' % tz for tz in versions]) + ') == "1");'
       info.script.AppendExtra(cmd)
   return
-
-def FullOTA_InstallEnd(info):
-    info.script.AppendExtra('ifelse(is_mounted("/system"), unmount("/system"));');
-    info.script.Mount("/system");
-    info.script.AppendExtra('ifelse(is_mounted("/vendor"), unmount("/vendor"));');
-    info.script.Mount("/vendor");
-    info.script.AppendExtra('ifelse(is_mounted("/data"), unmount("/data"));');
-    info.script.Mount("/data");
-    info.script.AppendExtra('ifelse(is_mounted("/persist"), unmount("/persist"));');
-    info.script.Mount("/persist");
-    info.script.AppendExtra('run_program("/sbin/sh", "/tmp/install/bin/device_check.sh");');
-    info.script.Unmount("/system");
-    info.script.Unmount("/vendor");
-    info.script.Unmount("/data");
-    info.script.Unmount("/persist");
