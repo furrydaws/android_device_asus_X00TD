@@ -77,7 +77,10 @@ PRODUCT_COPY_FILES += \
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
-    antradio_app
+    com.dsi.ant.antradio_library
+
+PRODUCT_COPY_FILES += \
+    external/ant-wireless/antradio-library/com.dsi.ant.antradio_library.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.dsi.ant.antradio_library.xml
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -120,7 +123,9 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
-    libbt-vendor 
+    android.hardware.bluetooth@1.0 \
+    libbt-vendor \
+    libbthost_if
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2160
@@ -180,8 +185,7 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint feature
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service
-
+    fingerprintd
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.fingerprint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.fingerprint.xml
@@ -195,16 +199,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
 
-# Google Lens
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/camera/lens/google_build.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/google_build.xml \
-    $(LOCAL_PATH)/camera/lens/nexus.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/nexus.xml \
-    $(LOCAL_PATH)/camera/lens/pixel_2017.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017.xml \
-    $(LOCAL_PATH)/camera/lens/pixel_2017_exclusive.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/pixel_2017_exclusive.xml
-
 # GPS / Location
 PRODUCT_PACKAGES += \
     android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-service-qti \
     libcurl \
     libgnss \
     libgnsspps \
@@ -320,11 +318,16 @@ PRODUCT_PACKAGES += \
     android.hardware.nfc@1.0-impl \
     android.hardware.nfc@1.0-service \
     com.android.nfc_extras \
+    com.nxp.nfc.nq \
+    com.nxp.nfc.nq.xml \
+    libnqnfc-nci \
+    libnqp61-jcop-kit \
     nfc_nci.sdm660 \
     NfcNci \
+    NQNfcNci \
     Tag \
     vendor.nxp.hardware.nfc@1.0-impl \
-    vendor.nxp.hardware.nfc@1.0-service 
+    vendor.nxp.hardware.nfc@1.0-service
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -451,6 +454,7 @@ PRODUCT_BOOT_JARS += \
 
 # Telephony
 PRODUCT_PACKAGES += \
+    qti-telephony-common \
     telephony-ext
 
 PRODUCT_BOOT_JARS += \
