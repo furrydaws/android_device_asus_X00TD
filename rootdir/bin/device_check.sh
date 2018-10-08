@@ -15,30 +15,6 @@
 # limitations under the License.
 #
 
-if ! grep "nfc" /persist/manifest.xml
-	then
-    # Remove NFC
-    rm -rf /system/app/*Nfc*
-    rm -rf /system/etc/permissions/*nfc*
-    rm -rf /system/framework/*nfc*
-    rm -rf /system/lib/*nfc*
-    rm -rf /system/lib64/*nfc*
-    rm -rf /system/priv-app/Tag
-    rm -rf /vendor/app/SmartcardService
-    rm -rf /vendor/bin/*nfc*
-    rm -rf /vendor/bin/hw/*nfc*
-    rm -rf /vendor/etc/*nfc*
-    rm -rf /vendor/etc/init/*nfc*
-    rm -rf /vendor/etc/permissions/*nfc*
-    rm -rf /vendor/firmware/libpn553_fw.so
-    rm -rf /vendor/lib/*nfc*
-    rm -rf /vendor/lib/hw/*nfc*
-    rm -rf /vendor/lib64/*nfc*
-    rm -rf /vendor/lib64/hw/*nfc*
-    # Use Non NFC manifest
-    rm -rf /vendor/manifest.xml
-    mv -f /vendor/manifest_no_nfc.xml /vendor/manifest.xml
-fi
 
 if [ ! -f /data/system/users/0/settings_fingerprint.xml ]; then
     rm -rf /persist/data/finger_*
