@@ -1,4 +1,4 @@
-#
+# 
 # Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,16 +24,12 @@
 # Device uses high-density artwork where available
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
 
 # Dalvik overrides
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
-
-#Bootanimation res
-TARGET_BOOT_ANIMATION_RES := 1080
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -137,7 +133,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     android.hardware.camera.provider@2.4-service \
     libxml2 \
-    GoogleCam
+    Snap
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
@@ -166,7 +162,6 @@ PRODUCT_PACKAGES += \
     copybit.sdm660 \
     gralloc.sdm660 \
     hwcomposer.sdm660 \
-    libhwc2on1adapter \
     libdisplayconfig \
     liboverlay \
     libqdMetaData.system \
@@ -277,6 +272,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
+# Manifest replacement for non NFC variant
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/bin/device_check.sh:install/bin/device_check.sh
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml \
@@ -294,7 +293,6 @@ PRODUCT_PACKAGES += \
     libavmediaserviceextensions \
     libmediametrics \
     libregistermsext \
-    libhypv_intercept \
     mediametrics
 
 # Netutils
@@ -322,7 +320,7 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     vendor.nxp.hardware.nfc@1.0-impl \
-    vendor.nxp.hardware.nfc@1.0-service 
+    vendor.nxp.hardware.nfc@1.0-service
 
 # OMX
 PRODUCT_PACKAGES += \
@@ -384,7 +382,6 @@ PRODUCT_PACKAGES += \
     init.qcom.wifi.sh \
     init.qti.fm.sh \
     init.qti.ims.sh \
-    init.goodix.sh \
     init.qti.qseecomd.sh \
     qca6234-service.sh \
     fstab.qcom \
@@ -479,6 +476,10 @@ PRODUCT_PACKAGES += \
 # USB
 PRODUCT_PACKAGES += \
 	android.hardware.usb@1.0-service
+
+# Vendor security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineage.build.vendor_security_patch=2018-08-01
 
 # Vibrator
 PRODUCT_PACKAGES += \
